@@ -3,22 +3,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class DataTableAdopter extends RecyclerView.Adapter<DataTableAdopter.MyViewHolder> {
     ArrayList<String> m_time;
-    ArrayList<String> m_qoute;
+    ArrayList<String> m_quote;
     Context context;
 
     public DataTableAdopter(Context ct, ArrayList<String> time, ArrayList<String> qoute){
         context = ct;
         m_time = time;
-        m_qoute = qoute;
+        m_quote = qoute;
     }
 
     @NonNull
@@ -32,7 +30,7 @@ public class DataTableAdopter extends RecyclerView.Adapter<DataTableAdopter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.time.setText(m_time.get(position));
-        holder.qoute.setText(m_qoute.get(position));
+        holder.quote.setText(m_quote.get(position));
     }
 
     @Override
@@ -42,12 +40,12 @@ public class DataTableAdopter extends RecyclerView.Adapter<DataTableAdopter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView time;
-        TextView qoute;
+        TextView quote;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            time = itemView.findViewById(R.id.textView);
-            qoute = itemView.findViewById(R.id.textView);
+            time = itemView.findViewById(R.id.textViewTime);
+            quote = itemView.findViewById(R.id.textViewQoute);
         }
     }
 }

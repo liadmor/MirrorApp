@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 public class DataTableActivity extends AppCompatActivity {
 
     ArrayList<String> numberList = new ArrayList<>();
-    ArrayList<String> qouteList = new ArrayList<>();
+    ArrayList<String> quoteList = new ArrayList<>();
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class DataTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data_table);
         get_json();
         recyclerView = findViewById(R.id.dataJsonView);
-        DataTableAdopter dataTableAdopter= new DataTableAdopter(this,numberList,qouteList);
+        DataTableAdopter dataTableAdopter= new DataTableAdopter(this,numberList, quoteList);
         recyclerView.setAdapter(dataTableAdopter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -47,7 +46,7 @@ public class DataTableActivity extends AppCompatActivity {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject obj = jsonArray.optJSONObject(i);
                 numberList.add(obj.getString("time"));
-                qouteList.add(obj.getString("qoute"));
+                quoteList.add(obj.getString("quote"));
             }
         }
         catch (IOException | JSONException e)
