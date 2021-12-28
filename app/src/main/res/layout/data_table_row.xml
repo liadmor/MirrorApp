@@ -8,12 +8,24 @@
     <androidx.cardview.widget.CardView
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="90dp" >
+        tools:layout_editor_absoluteY="90dp"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewQoute"
+                android:layout_width="186dp"
+                android:layout_height="43dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/textViewTime"
@@ -25,19 +37,11 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.276"
                 app:layout_constraintStart_toEndOf="@+id/textViewQoute"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewQoute"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintVertical_bias="0.333" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
