@@ -8,12 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-public class DataTableAdopter extends RecyclerView.Adapter<DataTableAdopter.MyViewHolder> {
+public class DataTableAdapter extends RecyclerView.Adapter<DataTableAdapter.MyViewHolder> {
     ArrayList<String> m_time;
     ArrayList<String> m_quote;
     Context context;
 
-    public DataTableAdopter(Context ct, ArrayList<String> time, ArrayList<String> qoute){
+    public DataTableAdapter(Context ct, ArrayList<String> time, ArrayList<String> qoute){
         context = ct;
         m_time = time;
         m_quote = qoute;

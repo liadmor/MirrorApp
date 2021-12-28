@@ -20,7 +20,7 @@
             <TextView
                 android:id="@+id/textViewQoute"
                 android:layout_width="186dp"
-                android:layout_height="43dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -29,8 +29,8 @@
 
             <TextView
                 android:id="@+id/textViewTime"
-                android:layout_width="170dp"
-                android:layout_height="50dp"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:text="TextView"
