@@ -94,8 +94,6 @@ public class FeelingsBoardActivity extends AppCompatActivity {
 
         mrecycleview = findViewById(R.id.recyclerview);
         mrecycleview.setHasFixedSize(true);
-        //staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        //mrecycleview.setLayoutManager(staggeredGridLayoutManager);
         mrecycleview.setLayoutManager(new LinearLayoutManager(this));
         mrecycleview.setAdapter(boardAdapter);
 
