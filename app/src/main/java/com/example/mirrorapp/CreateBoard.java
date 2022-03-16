@@ -63,7 +63,7 @@ public class CreateBoard extends AppCompatActivity{
                             .collection("myBoards")
                             .document();
                     Map<String, Object> board = new HashMap<>();
-                    board.put("tite", title);
+                    board.put("title", title);
                     board.put("content", content);
 
                     documentReference.set(board).addOnSuccessListener(new OnSuccessListener<Void>() {
