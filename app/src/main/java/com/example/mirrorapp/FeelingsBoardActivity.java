@@ -3,6 +3,7 @@ package com.example.mirrorapp;
 import androidx.annotation.BinderThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -69,10 +70,11 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         });
 
         Query query = firebaseFirestore.collection("boards").document(firebaseUser.getUid()).collection("myBoards")
-                .orderBy("title", Query.Direction.ASCENDING);
+                .orderBy("title", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<firebasemodel> alluserboards = new FirestoreRecyclerOptions.Builder<firebasemodel>()
-                .setQuery(query, firebasemodel.class).build();
+                .setQuery(query, firebasemodel.class)
+                .build();
 
         boardAdapter = new FirestoreRecyclerAdapter<firebasemodel, BoardViewHolder>(alluserboards){
             @NonNull
@@ -92,8 +94,9 @@ public class FeelingsBoardActivity extends AppCompatActivity {
 
         mrecycleview = findViewById(R.id.recyclerview);
         mrecycleview.setHasFixedSize(true);
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mrecycleview.setLayoutManager(staggeredGridLayoutManager);
+        //staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        //mrecycleview.setLayoutManager(staggeredGridLayoutManager);
+        mrecycleview.setLayoutManager(new LinearLayoutManager(this));
         mrecycleview.setAdapter(boardAdapter);
 
     }
