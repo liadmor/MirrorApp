@@ -1,6 +1,5 @@
 package com.example.mirrorapp;
 
-import androidx.annotation.BinderThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,16 +8,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -29,8 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-import java.security.PublicKey;
 
 public class FeelingsBoardActivity extends AppCompatActivity {
 
@@ -125,7 +119,7 @@ public class FeelingsBoardActivity extends AppCompatActivity {
             case R.id.logout:
                 mAuth.signOut();
                 finish();
-                startActivity(new Intent(FeelingsBoardActivity.this, RegistrationForm.class));
+                startActivity(new Intent(FeelingsBoardActivity.this, loginForm.class));
         }
 
         return super.onOptionsItemSelected(item);

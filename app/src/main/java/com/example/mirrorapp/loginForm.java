@@ -12,14 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class RegistrationForm extends AppCompatActivity implements View.OnClickListener {
+public class loginForm extends AppCompatActivity implements View.OnClickListener {
 
     private TextView login, register;
     private EditText editTextEmail, editTextPassword;
@@ -44,7 +42,7 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
         //if user already login
         if(firebaseUser != null){
             finish();
-            startActivity(new Intent(RegistrationForm.this, FeelingsBoardActivity.class ));
+            startActivity(new Intent(loginForm.this, FeelingsBoardActivity.class ));
         }
 
         editTextEmail = (EditText) findViewById(R.id.et_username);
@@ -56,7 +54,7 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                startActivity(new Intent(this, RegistarUser.class));
+                startActivity(new Intent(this, RegisterUser.class));
                 break;
             case R.id.button_login:
                 loginUser();
@@ -90,9 +88,9 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    checkmailverification();
+                    verifyEmail();
                 }else{
-                    Toast.makeText(RegistrationForm.this, "Acount does not exist!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginForm.this, "Acount does not exist!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -113,14 +111,14 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
         });*/
     }
 
-    private void checkmailverification(){
+    private void verifyEmail(){
         FirebaseUser firebaseUser= mAuth.getCurrentUser();
         if(firebaseUser.isEmailVerified() == true){
-            Toast.makeText(RegistrationForm.this, "LogIn!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(loginForm.this, "LogIn!", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(RegistrationForm.this, FeelingsBoardActivity.class));
+            startActivity(new Intent(loginForm.this, FeelingsBoardActivity.class));
         }else{
-            Toast.makeText(RegistrationForm.this, "Fail to login!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(loginForm.this, "Fail to login!", Toast.LENGTH_SHORT).show();
             mAuth.signOut();
         }
     }
