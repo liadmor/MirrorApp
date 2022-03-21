@@ -108,24 +108,8 @@ public class RegistarUser extends AppCompatActivity implements View.OnClickListe
                         if(task.isSuccessful()){
                             //new
                             sendemailtoverifcation();
-
-                            /*User user = new User(fullName, age, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(RegistarUser.this, "User has been registered succesfully!", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.GONE);
-                                }else{
-                                        Toast.makeText(RegistarUser.this, "Faild to registere!!!!", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-                            }
-                        });*/
                         }else{
-                            Toast.makeText(RegistarUser.this, "Faild to registere", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistarUser.this, "Faild to registere!!!!!!!!!!", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
