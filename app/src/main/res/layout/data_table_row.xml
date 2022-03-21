@@ -11,7 +11,7 @@
         android:visibility="visible"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="90dp"
-        tools:visibility="visible">
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
