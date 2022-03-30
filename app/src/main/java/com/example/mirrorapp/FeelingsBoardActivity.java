@@ -1,6 +1,5 @@
 package com.example.mirrorapp;
 
-import androidx.annotation.BinderThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,16 +9,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -30,8 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-import java.security.PublicKey;
 
 public class FeelingsBoardActivity extends AppCompatActivity {
 
@@ -48,7 +42,7 @@ public class FeelingsBoardActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
 
-    FirestoreRecyclerAdapter<firebasemodel, BoardViewHolder> boardAdapter;
+    FirestoreRecyclerAdapter<FirebaseModel, BoardViewHolder> boardAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +75,11 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         Query query = firebaseFirestore.collection("boards").document(firebaseUser.getUid()).collection("myBoards")
                 .orderBy("title", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<firebasemodel> alluserboards = new FirestoreRecyclerOptions.Builder<firebasemodel>()
-                .setQuery(query, firebasemodel.class)
+        FirestoreRecyclerOptions<FirebaseModel> alluserboards = new FirestoreRecyclerOptions.Builder<FirebaseModel>()
+                .setQuery(query, FirebaseModel.class)
                 .build();
 
-        boardAdapter = new FirestoreRecyclerAdapter<firebasemodel, BoardViewHolder>(alluserboards){
+        boardAdapter = new FirestoreRecyclerAdapter<FirebaseModel, BoardViewHolder>(alluserboards){
             @NonNull
             @Override
             public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -95,7 +89,7 @@ public class FeelingsBoardActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull BoardViewHolder boardViewHolder, int i, @NonNull firebasemodel firebasemodel) {
+            protected void onBindViewHolder(@NonNull BoardViewHolder boardViewHolder, int i, @NonNull FirebaseModel firebasemodel) {
                 boardViewHolder.boardtitle.setText(firebasemodel.getTitle());
                 boardViewHolder.boardcontent.setText(firebasemodel.getContent());
             }

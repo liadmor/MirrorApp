@@ -1,5 +1,7 @@
 package com.example.mirrorapp;
 
+import static android.widget.Toast.makeText;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,53 +20,65 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class RegistrationForm extends AppCompatActivity implements View.OnClickListener {
+public class RegistrationForm extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView login, register;
-    private EditText editTextEmail, editTextPassword;
     private FirebaseAuth mAuth;
+
+    private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
+    private TextView banner, registerUser, login;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_form);
+        setContentView(R.layout.activity_registar_user);
         getSupportActionBar().hide(); //hide the title bar
 
-
-        register = (Button) findViewById(R.id.register);
-        register.setOnClickListener(this);
-
-        login = (Button) findViewById(R.id.button_login);
-        login.setOnClickListener(this);
-
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
-        //if user already login
-        if(firebaseUser != null){
-            finish();
-            startActivity(new Intent(RegistrationForm.this, FeelingsBoardActivity.class ));
-        }
+        banner = (TextView) findViewById(R.id.banner);
+        banner.setOnClickListener(this);
 
-        editTextEmail = (EditText) findViewById(R.id.et_username);
-        editTextPassword = (EditText) findViewById(R.id.et_password);
+        registerUser = (Button) findViewById(R.id.registerUser);
+        registerUser.setOnClickListener(this);
 
+         editTextFullName = (EditText) findViewById(R.id.fullName);
+         editTextAge = (EditText) findViewById(R.id.age);
+         editTextEmail = (EditText) findViewById(R.id.email);
+         editTextPassword = (EditText) findViewById(R.id.password);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.register:
-                startActivity(new Intent(this, RegisterUser.class));
+            case R.id.banner:
+                startActivity(new Intent(this, RegistrationForm.class));
                 break;
-            case R.id.button_login:
-                loginUser();
+            case R.id.registerUser:
+                registerUser();
+                break;
         }
     }
 
-    private void loginUser(){
+    private void registerUser(){
         String email = editTextEmail.getText().toString().trim();
+        String age = editTextAge.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String fullName = editTextFullName.getText().toString().trim();
+
+        if(fullName.isEmpty()){
+            editTextFullName.setError("full name is required");
+            editTextFullName.requestFocus();
+            return;
+        }
+
+        if(age.isEmpty()){
+            editTextAge.setError("Age is required");
+            editTextAge.requestFocus();
+            return;
+        }
 
         if(email.isEmpty()){
             editTextEmail.setError("Email is required");
@@ -83,43 +98,40 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        //new
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    checkmailverification();
-                }else{
-                    Toast.makeText(RegistrationForm.this, "Acount does not exist!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-        /*mAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(RegistrationForm.this, "succes!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), FeelingsBoard.class));
-                finish();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegistrationForm.this, "Fail!", Toast.LENGTH_SHORT).show();
-
-            }
-        });*/
+                        if(task.isSuccessful()){
+                            //new
+                            sendVerificationEmail();
+                        }else{
+                            Toast.makeText(RegistrationForm.this, "Faild to registere!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
     }
 
-    private void checkmailverification(){
-        FirebaseUser firebaseUser= mAuth.getCurrentUser();
-        if(firebaseUser.isEmailVerified() == true){
-            Toast.makeText(RegistrationForm.this, "LogIn!", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(RegistrationForm.this, FeelingsBoardActivity.class));
+    private void sendVerificationEmail(){
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if(firebaseUser != null){
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(RegistrationForm.this, "Verification email is sent, Verify and log in again", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    mAuth.signOut();
+                    finish();
+                    startActivity(new Intent(RegistrationForm.this, RegistrationForm.class));
+                }
+            });
         }else{
-            Toast.makeText(RegistrationForm.this, "Fail to login!", Toast.LENGTH_SHORT).show();
-            mAuth.signOut();
+            Toast.makeText(RegistrationForm.this, "fail to sent a verification email", Toast.LENGTH_SHORT).show();
+
         }
     }
+
 }

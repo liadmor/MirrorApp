@@ -1,15 +1,15 @@
 package com.example.mirrorapp;
 
-public class firebasemodel {
+public class FirebaseModel {
 
     private String title;
     private String content;
 
-    public firebasemodel(){
+    public FirebaseModel(){
 
     }
 
-    public firebasemodel(String title, String content){
+    public FirebaseModel(String title, String content){
         this.title = title;
         this.content = content;
     }
