@@ -53,24 +53,6 @@ public class FeelingsBoard extends AppCompatActivity implements View.OnClickList
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
-
-        /*publish.setOnClickListener(v -> {
-            TextView dataView = findViewById(R.id.curFeeling);
-            data = dataView.getText().toString();
-            try {
-                writeDataToJson(data);
-                Intent i = new Intent(getApplicationContext(), DataTableActivity.class);
-                startActivity(i);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        history.setOnClickListener(v -> {
-            Intent i = new Intent(getApplicationContext(), DataTableActivity.class);
-            startActivity(i);
-        });*/
     }
 
     @Override

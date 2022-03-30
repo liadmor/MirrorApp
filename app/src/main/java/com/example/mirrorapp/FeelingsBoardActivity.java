@@ -105,7 +105,6 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         mrecycleview.setHasFixedSize(true);
         mrecycleview.setLayoutManager(new LinearLayoutManager(this));
         mrecycleview.setAdapter(boardAdapter);
-
     }
 
     public void feelingClicked(View v){

@@ -19,9 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class RegistarUser extends AppCompatActivity implements View.OnClickListener{
+public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth mAuth;
 
@@ -109,7 +108,7 @@ public class RegistarUser extends AppCompatActivity implements View.OnClickListe
                             //new
                             sendemailtoverifcation();
                         }else{
-                            Toast.makeText(RegistarUser.this, "Faild to registere!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterUser.this, "Faild to registere!!!!!!!!!!", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
@@ -122,15 +121,15 @@ public class RegistarUser extends AppCompatActivity implements View.OnClickListe
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(RegistarUser.this, "Verification email is sent, Verify and log in again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "Verification email is sent, Verify and log in again", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     mAuth.signOut();
                     finish();
-                    startActivity(new Intent(RegistarUser.this, RegistrationForm.class));
+                    startActivity(new Intent(RegisterUser.this, RegistrationForm.class));
                 }
             });
         }else{
-            Toast.makeText(RegistarUser.this, "fail to sent a verification email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterUser.this, "fail to sent a verification email", Toast.LENGTH_SHORT).show();
 
         }
     }
