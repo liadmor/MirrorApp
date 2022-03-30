@@ -47,7 +47,7 @@ public class FeelingsBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feelings_board2);
+        setContentView(R.layout.activity_feelings_main);
 
         mcreateboard = findViewById(R.id.createnewboard);
 //        welcome = findViewById(R.id.welcome);

@@ -10,9 +10,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:fillViewport="true"
         android:fitsSystemWindows="true"
+        android:orientation="vertical"
         tools:context=".LoginActivity">
 
         <RelativeLayout
@@ -99,7 +99,7 @@
 
                         <EditText
                             android:id="@+id/et_password"
-                            android:layout_width="wrap_content"
+                            android:layout_width="324dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="12dp"
@@ -117,13 +117,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:layout_width="365dp"
+                    android:layout_width="362dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/login_error"
-                        android:layout_width="219dp"
+                        android:layout_width="197dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_marginLeft="35dp"
@@ -155,10 +155,6 @@
                     android:orientation="vertical">
 
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></LinearLayout>
-
                     <ProgressBar
                         android:id="@+id/progressBar"
                         android:layout_width="73dp"
@@ -168,6 +164,4 @@
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
