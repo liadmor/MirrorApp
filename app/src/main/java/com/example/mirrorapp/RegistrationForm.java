@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationForm extends AppCompatActivity implements View.OnClickListener{
 
@@ -66,9 +67,9 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
         String email = editTextEmail.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-        String fullName = editTextFullName.getText().toString().trim();
+        String name = editTextFullName.getText().toString().trim();
 
-        if(fullName.isEmpty()){
+        if(name.isEmpty()){
             editTextFullName.setError("full name is required");
             editTextFullName.requestFocus();
             return;
@@ -105,10 +106,13 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            //new
                             sendVerificationEmail();
+                            User user = new User(name, age, email);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user);
                         }else{
-                            Toast.makeText(RegistrationForm.this, "Faild to registere!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistrationForm.this, "Failed to register!!!!!!!!!!", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
