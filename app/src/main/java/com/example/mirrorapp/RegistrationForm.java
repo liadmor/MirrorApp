@@ -32,7 +32,7 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registar_user);
+        setContentView(R.layout.activity_register_user);
         getSupportActionBar().hide(); //hide the title bar
 
         mAuth = FirebaseAuth.getInstance();

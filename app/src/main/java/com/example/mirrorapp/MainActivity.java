@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_form);
+        setContentView(R.layout.activity_login_form);
         startActivity(new Intent(this, LoginForm.class));
         getSupportActionBar().hide(); //hide the title bar
         setContentView(R.layout.activity_main);
