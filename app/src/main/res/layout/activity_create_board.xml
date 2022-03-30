@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateBoard">
-    
+
     <Toolbar
+        android:id="@+id/toolbarofcreateboard"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbarofcreateboard"
         android:background="@color/white">
 
         <EditText
+            android:id="@+id/createtitleofboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="איך את מרגישה?"
             android:paddingTop="12dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            android:hint="Enter your day feelind here"
-            android:id="@+id/createtitleofboard">
+            android:textSize="20sp"
+            android:textStyle="bold">
 
         </EditText>
     </Toolbar>
@@ -30,9 +30,10 @@
         android:layout_height="match_parent"
         android:textSize="15sp"
         android:background="#faf7f7"
-        android:gravity="top|left"
+        android:gravity="top|right"
         android:textColor="@color/black"
-        android:hint="Enter your feelings here"
+        android:textDirection="rtl"
+        android:hint="ספרי לנו עוד"
         android:layout_below="@+id/toolbarofcreateboard"
         android:padding="15dp"
         android:id="@+id/createcontentofboard">

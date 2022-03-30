@@ -19,9 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class RegistarUser extends AppCompatActivity implements View.OnClickListener{
+public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth mAuth;
 
@@ -107,46 +106,47 @@ public class RegistarUser extends AppCompatActivity implements View.OnClickListe
 
                         if(task.isSuccessful()){
                             //new
-                            sendemailtoverifcation();
+                            sendVerificationEmail();
 
-                            /*User user = new User(fullName, age, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(RegistarUser.this, "User has been registered succesfully!", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.GONE);
-                                }else{
-                                        Toast.makeText(RegistarUser.this, "Faild to registere!!!!", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-                            }
-                        });*/
-                        }else{
-                            Toast.makeText(RegistarUser.this, "Faild to registere", Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+//                            User user = new User(fullName, age, email);
+//                            FirebaseDatabase.getInstance().getReference("Users")
+//                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if (task.isSuccessful()){
+//                                        Toast.makeText(RegisterUser.this, "User has been registered succesfully!", Toast.LENGTH_SHORT).show();
+//                                        progressBar.setVisibility(View.GONE);
+//                                }else{
+//                                        Toast.makeText(RegisterUser.this, "Faild to register!!!!", Toast.LENGTH_SHORT).show();
+//                                        progressBar.setVisibility(View.GONE);
+//                                    }
+//                            }
+//                        });
+//                        }else{
+//                            Toast.makeText(RegisterUser.this, "Faild to registere", Toast.LENGTH_SHORT).show();
+//                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
     }
 
-    private void sendemailtoverifcation(){
+
+    private void sendVerificationEmail(){
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         if(firebaseUser != null){
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(RegistarUser.this, "Verification email is sent, Verify and log in again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "Verification email is sent, Verify and log in again", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     mAuth.signOut();
                     finish();
-                    startActivity(new Intent(RegistarUser.this, RegistrationForm.class));
+                    startActivity(new Intent(RegisterUser.this, RegistrationForm.class));
                 }
             });
         }else{
-            Toast.makeText(RegistarUser.this, "fail to sent a verification email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterUser.this, "fail to sent a verification email", Toast.LENGTH_SHORT).show();
 
         }
     }

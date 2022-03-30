@@ -24,7 +24,7 @@
             android:name=".FeelingsBoard"
             android:exported="false" />
         <activity
-            android:name=".RegistarUser"
+            android:name=".RegisterUser"
             android:exported="false" />
         <activity
             android:name=".RegistrationForm"

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,8 +38,11 @@ public class FeelingsBoardActivity extends AppCompatActivity {
     FloatingActionButton mcreateboard;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
+    private String mUid;
+    private DatabaseReference userDatabase;
 
     RecyclerView mrecycleview;
+    TextView welcome;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
 
     FirebaseUser firebaseUser;
@@ -52,15 +56,20 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feelings_board2);
 
         mcreateboard = findViewById(R.id.createnewboard);
+//        welcome = findViewById(R.id.welcome);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
 
-        getSupportActionBar().setTitle("All Boards");
+        getSupportActionBar().setTitle("HYGGE");
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mUid = mAuth.getCurrentUser().getUid();
+        userDatabase = FirebaseDatabase.getInstance().getReference("Users");
+
+//        welcome.setText("Hey " + mAuth.getCurrentUser().getDisplayName());
 
         mcreateboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +106,17 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         mrecycleview.setLayoutManager(new LinearLayoutManager(this));
         mrecycleview.setAdapter(boardAdapter);
 
+    }
+
+    public void feelingClicked(View v){
+        if(v.isActivated()){
+            v.setBackgroundColor(Color.parseColor("#FF6200EE"));
+            v.setActivated(false);
+        }
+        else{
+            v.setBackgroundColor(Color.GRAY);
+            v.setActivated(true);
+        }
     }
 
     public class BoardViewHolder extends RecyclerView.ViewHolder{
