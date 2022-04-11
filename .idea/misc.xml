@@ -8,6 +8,7 @@
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/layout/activity_main2.xml" value="0.22" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/layout/data_table_row.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/button_bg.xml" value="0.4041666666666667" />
         <entry key="app/src/main/res/drawable/button_hist.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout-v31/main_page.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/activity_create_board.xml" value="0.29936594202898553" />
@@ -15,13 +16,16 @@
         <entry key="app/src/main/res/layout/activity_feelings_board.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/activity_feelings_board2.xml" value="0.3510164564686842" />
         <entry key="app/src/main/res/layout/activity_feelings_main.xml" value="0.14299671351888618" />
+        <entry key="app/src/main/res/layout/activity_login_form.xml" value="0.3120471014492754" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21979166666666666" />
+        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_registar_user.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/activity_registration_form.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/board_layout.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/data_table_row.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/main_page.xml" value="0.28442028985507245" />
+        <entry key="app/src/main/res/layout/new_file.xml" value="0.34091299762286026" />
       </map>
     </option>
   </component>

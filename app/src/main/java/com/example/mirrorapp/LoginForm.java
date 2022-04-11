@@ -42,7 +42,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         //if user already login
         if(firebaseUser != null){
             finish();
-            startActivity(new Intent(LoginForm.this, FeelingsBoardActivity.class ));
+            startActivity(new Intent(LoginForm.this, MainPageActivity.class ));
         }
 
         editTextEmail = (EditText) findViewById(R.id.et_username);
@@ -101,7 +101,7 @@ public class LoginForm extends AppCompatActivity implements View.OnClickListener
         if(firebaseUser.isEmailVerified() == true){
             Toast.makeText(LoginForm.this, "LogIn!", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(LoginForm.this, FeelingsBoardActivity.class));
+            startActivity(new Intent(LoginForm.this, MainPageActivity.class));
         }else{
             Toast.makeText(LoginForm.this, "Fail to login!", Toast.LENGTH_SHORT).show();
             mAuth.signOut();
