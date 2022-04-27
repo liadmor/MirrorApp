@@ -135,8 +135,6 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent">-->
 
-
-
             <EditText
                 android:id="@+id/createcontentofboard"
                 android:layout_width="226dp"
@@ -148,6 +146,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_toLeftOf="@+id/saveboard"
                 android:ems="10"
+                android:background="@null"
                 android:hint="ספרי לנו עוד"
                 android:inputType="textPersonName"
                 android:padding="15dp"
@@ -157,6 +156,14 @@
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/draw_view"
                 tools:layout_editor_absoluteX="101dp" />
+
+            <ImageView
+
+                android:layout_width="226dp"
+                android:layout_height="150dp"
+                android:id="@+id/add_photo">
+
+            </ImageView>
 
             <com.example.mirrorapp.DrawView
                 android:id="@+id/draw_view"

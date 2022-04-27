@@ -1,14 +1,19 @@
 package com.example.mirrorapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -27,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -54,9 +60,10 @@ public class CreateBoard extends AppCompatActivity{
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private DrawView paint;
-    private ImageButton madddraw, maddtext, maddemoji;
+    private ImageButton madddraw, maddtext, maddemoji, maddPic;
     public final int CATEGORY_ID =0;
     private Dialog dialog;
+    private ImageView maddphoto;
 
     private StickerView mstickerView;
 
@@ -108,6 +115,22 @@ public class CreateBoard extends AppCompatActivity{
             }
         });
 
+        maddphoto = findViewById(R.id.add_photo);
+        if (ContextCompat.checkSelfPermission(CreateBoard.this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(CreateBoard.this, new String[]{
+                    Manifest.permission.CAMERA}, 100);
+        }
+
+        maddPic = findViewById(R.id.addPic);
+        maddPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 100);
+            }
+        });
+
 
 //        mstickerView = (StickerView) findViewById(R.id.stickerView);
 //        TextSticker sticker = new TextSticker(this);
@@ -132,9 +155,9 @@ public class CreateBoard extends AppCompatActivity{
             public void onClick(View v) {
                 String title = mcreatetitleofboard.getText().toString();
                 String content = mcreacontantofboard.getText().toString();
-                if(title.isEmpty() || content.isEmpty()) {
+                if (title.isEmpty() || content.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Both field are requiar!", Toast.LENGTH_SHORT);
-                }else{
+                } else {
                     DocumentReference documentReference = firebaseFirestore.collection("boards").document(firebaseUser.getUid())
                             .collection("myBoards")
                             .document();
@@ -157,5 +180,14 @@ public class CreateBoard extends AppCompatActivity{
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100){
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            maddphoto.setImageBitmap(bitmap);
+        }
     }
 }
