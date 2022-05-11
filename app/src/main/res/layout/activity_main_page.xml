@@ -74,27 +74,32 @@
                 android:id="@+id/button"
                 style="@style/feelings"
                 android:layout_width="50dp"
+                android:tag="+"
                 android:text="+"
                 android:textSize="20dp" />
 
             <Button
                 android:id="@+id/button2"
                 style="@style/feelings"
+                android:tag="Happy"
                 android:text="Happy" />
 
             <Button
                 android:id="@+id/button3"
                 style="@style/feelings"
+                android:tag="Sad"
                 android:text="Sad" />
 
             <Button
                 android:id="@+id/button4"
                 style="@style/feelings"
+                android:tag="Angry"
                 android:text="Angry" />
 
             <Button
                 android:id="@+id/button5"
                 style="@style/feelings"
+                android:tag="Hurt"
                 android:text="Hurt" />
 
             <Button
@@ -106,11 +111,13 @@
             <Button
                 android:id="@+id/button7"
                 style="@style/feelings"
+                android:tag="In Love"
                 android:text="In Love" />
 
             <Button
                 android:id="@+id/button8"
                 style="@style/feelings"
+                android:tag="Afraid"
                 android:text="Afraid" />
 
             <Button
@@ -121,12 +128,13 @@
             <Button
                 android:id="@+id/button10"
                 style="@style/feelings"
+                android:tag="Bummer"
                 android:text="Bummer" />
 
         </GridLayout>
     </HorizontalScrollView>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/feelings_board"
         android:layout_width="296dp"
         android:layout_height="225dp"
@@ -137,19 +145,11 @@
         app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feelings_buttons">
+        app:layout_constraintTop_toBottomOf="@+id/feelings_buttons"
+        android:background="@drawable/feeling_place">
 
-        <ImageView
-            android:id="@+id/flag"
-            android:layout_width="296dp"
-            android:layout_height="223dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:alpha="0.78"
-            android:scaleType="fitXY"
-            android:src="@drawable/feeling_place" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <ImageView
@@ -165,9 +165,9 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
-        android:layout_width="361dp"
-        android:layout_height="83dp"
-        android:layout_marginHorizontal="5dp"
+        android:layout_width="442dp"
+        android:layout_height="117dp"
+        android:layout_marginLeft="20dp"
         android:background="@color/white"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"

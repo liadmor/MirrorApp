@@ -23,10 +23,16 @@
         <item name="android:background">@drawable/button_hist</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="colorPrimary"> @color/design_default_color_background</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/purple_700</item>
-    </style>
 
+    <style name="feelingsChosen" parent="android:style/Widget.Button">
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/rubik</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">32.56dp</item>
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 </resources>

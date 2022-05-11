@@ -55,7 +55,7 @@ public class RegistrationForm extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.banner:
-                startActivity(new Intent(this, LoginForm.class));
+                startActivity(new Intent(this, RegistrationForm.class));
                 break;
             case R.id.registerUser:
                 registerUser();

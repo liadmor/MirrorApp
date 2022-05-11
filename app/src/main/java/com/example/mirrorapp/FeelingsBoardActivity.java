@@ -43,7 +43,6 @@ public class FeelingsBoardActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
 
     FirestoreRecyclerAdapter<FirebaseModel, BoardViewHolder> boardAdapter;
-    FirestoreRecyclerAdapter<FirebaseModel, BoardViewHolder> emptyBoardAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +65,6 @@ public class FeelingsBoardActivity extends AppCompatActivity {
 
 //        welcome.setText("Hey " + mAuth.getCurrentUser().getDisplayName());
 
-
-
         mcreateboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +78,6 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         FirestoreRecyclerOptions<FirebaseModel> alluserboards = new FirestoreRecyclerOptions.Builder<FirebaseModel>()
                 .setQuery(query, FirebaseModel.class)
                 .build();
-
 
         boardAdapter = new FirestoreRecyclerAdapter<FirebaseModel, BoardViewHolder>(alluserboards){
             @NonNull
@@ -142,7 +138,7 @@ public class FeelingsBoardActivity extends AppCompatActivity {
             case R.id.logout:
                 mAuth.signOut();
                 finish();
-                startActivity(new Intent(FeelingsBoardActivity.this, LoginForm.class));
+                startActivity(new Intent(FeelingsBoardActivity.this, RegistrationForm.class));
         }
 
         return super.onOptionsItemSelected(item);
