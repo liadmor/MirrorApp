@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.1921875" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22239583333333332" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/drawable/btn_feachers_style.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/drawable/btn_save_style.xml" value="0.2755208333333333" />
@@ -35,6 +36,19 @@
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/layout/row_stickers.xml" value="0.271875" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/layout/sticker_dialog.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/97250/Milab/MirrorApp/app/src/main/res/menu/menu.xml" value="0.11927083333333334" />
+        <entry key="app/src/main/res/drawable/btn_feachers_style.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/btn_save_style.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_dizzy_face__1f635_.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_draw.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_face_blowing_a_kiss__1f618_.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_face_with_tears_of_joy__1f602_.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_hugging_face__1f917_.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_kissing_face_with_closed_eyes__1f61a_.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_stiker.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_text.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/drawable/ic_voice_record.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_create_board.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_data_table.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/activity_feelings_board.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/activity_feelings_board2.xml" value="0.3510164564686842" />
@@ -47,8 +61,10 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/board_layout.xml" value="0.29936594202898553" />
         <entry key="app/src/main/res/layout/data_table_row.xml" value="0.21979166666666666" />
+        <entry key="app/src/main/res/layout/empty_board_layout.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/main_page.xml" value="0.28442028985507245" />
         <entry key="app/src/main/res/layout/new_file.xml" value="0.34091299762286026" />
+        <entry key="app/src/main/res/layout/row_stickers.xml" value="0.165625" />
       </map>
     </option>
   </component>

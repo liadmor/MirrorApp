@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -73,6 +74,14 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         HorizontalScrollView feelingsView =  findViewById(R.id.feelings_buttons);
+        ImageView proceed = findViewById(R.id.arrow);
+
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainPageActivity.this, CreateBoard.class));
+            }
+        });
 
         ArrayList<Button>  feelingsButtons = getButtons(feelingsView);
 
