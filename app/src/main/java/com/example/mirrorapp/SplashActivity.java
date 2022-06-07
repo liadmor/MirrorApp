@@ -8,6 +8,9 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.security.acl.Group;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,8 +21,8 @@ public class SplashActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         Animation zoom = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoom);
-        ImageView img = findViewById(R.id.image);
-        img.startAnimation(zoom);
+        ImageView logo = findViewById(R.id.logo);
+        logo.startAnimation(zoom);
 
         Handler h = new Handler();
         h.postDelayed(new Runnable() {

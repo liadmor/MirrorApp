@@ -4,10 +4,14 @@ import static java.util.Collections.list;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialogFragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -20,12 +24,15 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.DragAndDropPermissions;
 import android.view.DragEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.util.ArrayUtils;
@@ -34,8 +41,16 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Stack;
 
 public class MainPageActivity extends AppCompatActivity implements View.OnLongClickListener {
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText emotion;
+    private TextView add_button;
+    private ImageView exit;
+    private Stack<String> emotions = new Stack<String>();
+
 
     @Override
     public boolean onLongClick(View v) {
@@ -75,11 +90,39 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
         setContentView(R.layout.activity_main_page);
         HorizontalScrollView feelingsView =  findViewById(R.id.feelings_buttons);
         ImageView proceed = findViewById(R.id.arrow);
+        RelativeLayout targetImageView = findViewById(R.id.feelings_board);
+        Button add_emotion = findViewById(R.id.plus);
+        RelativeLayout feelingsLayout = findViewById(R.id.feelings_board);
+
+
+        add_emotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createEmotionDialog();
+            }
+        });
+
+        targetImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainPageActivity.this, CreateBoard.class));
+            }
+        });
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainPageActivity.this, CreateBoard.class));
+                Intent boardIntent = new Intent(MainPageActivity.this, CreateBoard.class);
+                int i=0;
+
+                while (!emotions.isEmpty()){
+                    boardIntent.putExtra("emotion" + i, emotions.pop());
+                    i++;
+                }
+
+                boardIntent.putExtra("count", String.valueOf(i));
+                startActivity(boardIntent);
+
             }
         });
 
@@ -93,14 +136,14 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
         resetFeelings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                RelativeLayout feelingsLayout = findViewById(R.id.feelings_board);
                 feelingsLayout.removeAllViewsInLayout();
+                feelingsLayout.addView(proceed);
             }
         });
 
 
 //        b.setOnLongClickListener(this);
-        RelativeLayout targetImageView = findViewById(R.id.feelings_board);
+
 
         targetImageView.setOnDragListener(new View.OnDragListener() {
             @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -131,14 +174,14 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
                         CharSequence buttonText = buttonItem.getText();
                         DragAndDropPermissions dropPermissions =
                             requestDragAndDropPermissions(e);
-//
+
                         Button newButton = new Button(MainPageActivity.this, null, R.style.feelingsChosen , R.style.feelingsChosen);
                         newButton.setText(buttonText.toString());
-//
+                        emotions.push(buttonText.toString());
                         targetImageView.addView(newButton);
                         newButton.setX(e.getX());
                         newButton.setY(e.getY());
-//
+
                         v.invalidate();
 
                         return true;
@@ -155,5 +198,48 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
 
     }
 
+    public void createEmotionDialog(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View addEmotionView = getLayoutInflater().inflate(R.layout.add_emotion, null);
 
+//
+
+        dialogBuilder.setView(addEmotionView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        emotion = (EditText) dialog.findViewById(R.id.emotionadd);
+        add_button = dialog.findViewById(R.id.addButton);
+        exit = dialog.findViewById(R.id.exit);
+
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence buttonText = emotion.getText();
+
+
+                Button newButton = new Button(MainPageActivity.this, null, R.style.feelingsChosen , R.style.feelingsChosen);
+                newButton.setText(buttonText.toString());
+                RelativeLayout targetImageView = findViewById(R.id.feelings_board);
+                targetImageView.addView(newButton);
+                newButton.setX(200);
+                newButton.setY(50);
+                emotions.push(buttonText.toString());
+                dialog.dismiss();
+
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+
+
+    }
 }
+

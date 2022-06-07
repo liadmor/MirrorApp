@@ -12,10 +12,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +33,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -49,10 +54,13 @@ import com.xiaopo.flying.sticker.Sticker;
 import com.xiaopo.flying.sticker.StickerView;
 import com.xiaopo.flying.sticker.TextSticker;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class CreateBoard extends AppCompatActivity{
+
 
     private EditText mcreatetitleofboard, mcreacontantofboard;
     private Button msaveboard;
@@ -60,10 +68,11 @@ public class CreateBoard extends AppCompatActivity{
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private DrawView paint;
-    private ImageButton madddraw, maddtext, maddemoji, maddPic;
+    private ImageView madddraw, maddtext, maddemoji, maddPic;
     public final int CATEGORY_ID =0;
     private Dialog dialog;
     private ImageView maddphoto;
+    private LinearLayout emotions;
 
     private StickerView mstickerView;
 
@@ -71,6 +80,26 @@ public class CreateBoard extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_board);
+
+
+
+        Intent intent = getIntent();
+        int count = Integer.parseInt(intent.getStringExtra("count"));
+        emotions = findViewById(R.id.emotions);
+        for (int i=0; i< count; i++){
+            Button newBtn = new Button(this);
+            newBtn.setText(intent.getStringExtra("emotion"+i));
+            newBtn.setTextColor(Color.WHITE);
+            newBtn.setBackgroundResource(R.drawable.button_bg_board);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(2, 5, 2, 5);
+            newBtn.setLayoutParams(params);
+            emotions.addView(newBtn);
+        }
+
 
         msaveboard = findViewById(R.id.saveboard);
         mcreatetitleofboard = findViewById(R.id.createtitleofboard);
@@ -149,37 +178,43 @@ public class CreateBoard extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         msaveboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = mcreatetitleofboard.getText().toString();
-                String content = mcreacontantofboard.getText().toString();
-                if (title.isEmpty() || content.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Both field are requiar!", Toast.LENGTH_SHORT);
-                } else {
-                    DocumentReference documentReference = firebaseFirestore.collection("boards").document(firebaseUser.getUid())
-                            .collection("myBoards")
-                            .document();
-                    Map<String, Object> board = new HashMap<>();
-                    board.put("title", title);
-                    board.put("content", content);
-
-                    documentReference.set(board).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(CreateBoard.this, "board create secssesfuly!", Toast.LENGTH_SHORT);
-                            startActivity(new Intent(CreateBoard.this, FeelingsBoardActivity.class));
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(CreateBoard.this, "Fail to create board!", Toast.LENGTH_SHORT);
-                        }
-                    });
-                }
+                startActivity(new Intent(CreateBoard.this, MainPageActivity.class));
             }
         });
+
+//        msaveboard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String title = mcreatetitleofboard.getText().toString();
+//                String content = mcreacontantofboard.getText().toString();
+//                if (title.isEmpty() || content.isEmpty()) {
+//                    Toast.makeText(getApplicationContext(), "Both field are requiar!", Toast.LENGTH_SHORT);
+//                } else {
+//                    DocumentReference documentReference = firebaseFirestore.collection("boards").document(firebaseUser.getUid())
+//                            .collection("myBoards")
+//                            .document();
+//                    Map<String, Object> board = new HashMap<>();
+//                    board.put("title", title);
+//                    board.put("content", content);
+//
+//                    documentReference.set(board).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void unused) {
+//                            Toast.makeText(CreateBoard.this, "board create secssesfuly!", Toast.LENGTH_SHORT);
+//                            startActivity(new Intent(CreateBoard.this, MainPageActivity.class));
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(CreateBoard.this, "Fail to create board!", Toast.LENGTH_SHORT);
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -190,4 +225,10 @@ public class CreateBoard extends AppCompatActivity{
             maddphoto.setImageBitmap(bitmap);
         }
     }
+
+
+
+
+
+
 }

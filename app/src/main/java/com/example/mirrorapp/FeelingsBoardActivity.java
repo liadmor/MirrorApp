@@ -57,7 +57,7 @@ public class FeelingsBoardActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
 
-        getSupportActionBar().setTitle("HYGGE");
+        getSupportActionBar().setTitle("Culiozen");
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();

@@ -15,10 +15,12 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/wendyone"
-        android:text="HYGGE"
+        android:text="Culiozen"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textColor ="#ffffffff"
+        android:textSize="43sp"
+        android:textFontWeight ="400"
+        android:gravity ="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,9 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/segoe"
-        android:text="Hey Dana,"
-        android:textSize="15dp"
+        android:fontFamily="@font/satisfy"
+        android:text="Hey Dana"
+        android:textSize ="25.00sp"
+        android:textFontWeight ="400"
+        android:textColor ="@color/black"
+        android:gravity ="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appName" />
@@ -42,9 +47,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="2dp"
-        android:fontFamily="@font/segoe"
+        android:fontFamily="@font/poppins"
         android:text=" How are You feeling today?"
-        android:textSize="15dp"
+        android:textSize ="20.00sp"
+        android:textFontWeight ="600"
+        android:textColor ="@color/black"
+        android:gravity ="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
@@ -71,7 +79,7 @@
             android:rowCount="2">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/plus"
                 style="@style/feelings"
                 android:layout_width="50dp"
                 android:tag="+"
@@ -149,6 +157,15 @@
         android:background="@drawable/feeling_place">
 
 
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="50dp"
+            android:layout_height="47dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            app:srcCompat="@drawable/arrow" />
     </RelativeLayout>
 
 
@@ -192,23 +209,6 @@
 
         </LinearLayout>
     </HorizontalScrollView>
-
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="63dp"
-        android:layout_height="49dp"
-        android:layout_alignStart="@+id/feelings_board"
-        android:layout_alignEnd="@+id/feelings_board"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="260dp"
-        android:layout_marginBottom="30dp"
-        android:elevation="15dp"
-        android:src="@drawable/to_canva"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintEnd_toEndOf="@+id/feelings_board"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="@+id/feelings_board"
-        app:layout_constraintTop_toBottomOf="@+id/feelings_buttons" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
