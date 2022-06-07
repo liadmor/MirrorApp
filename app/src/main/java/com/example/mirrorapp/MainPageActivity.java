@@ -92,7 +92,6 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
         ImageView proceed = findViewById(R.id.arrow);
         RelativeLayout targetImageView = findViewById(R.id.feelings_board);
         Button add_emotion = findViewById(R.id.plus);
-        RelativeLayout feelingsLayout = findViewById(R.id.feelings_board);
 
 
         add_emotion.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +104,18 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
         targetImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainPageActivity.this, CreateBoard.class));
+                Intent boardIntent = new Intent(MainPageActivity.this, CreateBoard.class);
+                int i=0;
+
+                while (!emotions.isEmpty()){
+                    boardIntent.putExtra("emotion" + i, emotions.pop());
+                    i++;
+                }
+
+                boardIntent.putExtra("count", String.valueOf(i));
+                startActivity(boardIntent);
+
+
             }
         });
 
@@ -136,8 +146,8 @@ public class MainPageActivity extends AppCompatActivity implements View.OnLongCl
         resetFeelings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                feelingsLayout.removeAllViewsInLayout();
-                feelingsLayout.addView(proceed);
+                targetImageView.removeAllViewsInLayout();
+                targetImageView.addView(proceed);
             }
         });
 
